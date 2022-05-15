@@ -20,10 +20,12 @@ typedef struct s_args
     int time_sleep;
     int must_eat;
 
-}       t_agrs;
+}       t_args;
 
 /*****MAIN_FUNCYIONS****/
 long long   ft_get_time();
+void        get_data(char **av, t_args *args);
 int         check_args(int ac, char **av);
+int         ft_atoi(char *str);
 
 #endif
