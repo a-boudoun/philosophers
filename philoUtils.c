@@ -1,5 +1,41 @@
 #include"philosophers.h"
 
+void    get_philodata(t_data *data)
+{
+    int i;
+
+    pthread_mutex_init(&(data->print), NULL);
+    data->philo = malloc(sizeof(t_philo) * data->nb_philo);
+    i = -1;
+    while(++i < data->nb_philo)
+    {
+        data->philo[i].nbr = i;
+        pthread_mutex_init(&(data->philo[i].left_fork), NULL);
+    }
+    i = -1;
+    while (++i)
+    {
+        if (i == data->nb_philo - 1)
+            data->philo[i].right_fork = &(data->philo[0].left_fork);
+        else
+            data->philo[i].right_fork = &(data->philo[i + 1].left_fork);
+        pthread_create(&(data->philo->philo_t), NULL, &ft_actions, &data->philo[i]);
+    }
+}
+
+void    get_data(char **av, t_data *data)
+{
+    data->nb_philo = ft_atoi(av[1]);
+    data->time_die = ft_atoi(av[2]);
+    data->time_eat = ft_atoi(av[3]);
+    data->time_sleep = ft_atoi(av[4]);
+    if (av[5])
+        data->must_eat = ft_atoi(av[5]);
+    else
+    data->must_eat = 0;
+    get_philodata(data);
+}
+
 int check_args(int ac, char **av)
 {
     int i;
@@ -20,10 +56,10 @@ int check_args(int ac, char **av)
         j = 0;
         while(av[i][j])
         {
-            if (av[i][j] == '-')
+            if ((av[i][j] >= '0' && av[i][j] <= '9'))
             {
                 printf("%swrong arguments\n", RED);
-                printf("%smust be a positive number\n", RED);
+                printf("%sall arguments must be a positive number\n", RED);
                 return(1);
             }
             j++;
@@ -31,6 +67,15 @@ int check_args(int ac, char **av)
         i++;
     }
     return(0);
+}
+
+long long ft_get_time()
+{
+    struct timeval current_time;
+    long long time;
+    gettimeofday(&current_time, NULL);
+    time = (current_time.tv_sec * 1000) + (current_time.tv_usec / 1000);
+    return (time);
 }
 
 int	ft_atoi(char *str)
