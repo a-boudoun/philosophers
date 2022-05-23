@@ -3,6 +3,7 @@
 
 #include <sys/time.h>
 #include <time.h>
+#include<unistd.h>
 #include<stdio.h>
 #include<stdlib.h>
 #include <pthread.h>
@@ -38,6 +39,7 @@ typedef struct s_data
 /*****MAIN_FUNCTIONS****/
 long long   ft_get_time();
 void        get_data(char **av, t_data *data);
+void        get_philodata(t_data *data);
 int         check_args(int ac, char **av);
 int         ft_atoi(char *str);
 void        *ft_actions(void    *philo);
