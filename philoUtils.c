@@ -6,7 +6,7 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:41:18 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/05/23 16:59:47 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/05/24 18:56:25 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,14 @@ void	get_philodata(t_data *data)
 {
 	int	i;
 
-	pthread_mutex_init(&(data->print), NULL);
+	//pthread_mutex_init(&(data->print), NULL);
 	data->philo = malloc(sizeof(t_philo) * data->nb_philo);
 	i = -1;
 	while (++i < data->nb_philo)
 	{
 		data->philo[i].nbr = i;
 		pthread_mutex_init(&(data->philo[i].left_fork), NULL);
+		data->philo[i].data = data;
 	}
 	i = -1;
 	while (++i < data->nb_philo)

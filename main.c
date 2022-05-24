@@ -10,11 +10,14 @@ int main(int ac, char **av)
     get_philodata(&data);
     while (1)
     {
-
+        if (data.philo_have_eaten == data.nb_philo)
+        {
+            printf("we are done\n");
+            return(0);
+        }
     }
     return(0);
 }
-    // printf("nbr of philosophers %d\n", data.nb_philo);
     // printf("time to die %d\n", data.time_die);
     // printf("time to eat  %d\n", data.time_eat);
     // printf("time to sleep %d\n", data.time_sleep);
