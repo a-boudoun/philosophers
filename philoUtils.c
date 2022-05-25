@@ -6,7 +6,7 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:41:18 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/05/25 19:02:15 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/05/25 19:39:47 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	ft_destroy(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = -1;
-	while(++i <= data->nb_philo)
+	while (++i <= data->nb_philo)
 	{
 		pthread_mutex_destroy(&(data->philo[i].left_fork));
 	}
@@ -27,10 +27,9 @@ void	ft_destroy(t_data *data)
 
 void	ft_print(char *messege, int p, t_data *data)
 {
-	(void)data;
-	int time;
-	
-	time = ft_get_time() -  data->print_time;
+	int	time;
+
+	time = ft_get_time() - data->print_time;
 	pthread_mutex_lock(&(data->print));
 	printf("%d %d %s\n", time, p, messege);
 	if (!data->on_dead)

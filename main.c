@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/25 19:42:39 by aboudoun          #+#    #+#             */
+/*   Updated: 2022/05/25 20:04:22 by aboudoun         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include"philosophers.h"
 
 void	get_data(char **av, t_data *data)
@@ -12,7 +24,7 @@ void	get_data(char **av, t_data *data)
 		data->must_eat = 0;
 	data->on_dead = 0;
 	data->philo_have_eaten = 0;
-    get_philodata(data);
+	get_philodata(data);
 }
 
 int	check_args(int ac, char **av)
@@ -23,9 +35,9 @@ int	check_args(int ac, char **av)
 	if (ac != 6 && ac != 5)
 	{
 		printf("%splease enter: ./philo [number_of_philosophers] ", WHT);
-		printf("%s[time_to_die] [time_to_eat] [time_to_sleep] ", WHT);
-		printf("%s[number_of_times_each_philosopher_must_eat (optional argument)]\n ", WHT);
-		printf("%s <time must be in milliseconds>\n", GRN);
+		printf("%s[time_to_die] [time_to_eat] [time_to_sleep] [number_of", WHT);
+		printf("%s_times_each_philosopher_must_eat(optional argument)]\n ", WHT);
+		printf("%s <time must be in milliseconds>\n", RED);
 		return (1);
 	}
 	i = 0;
@@ -44,17 +56,13 @@ int	check_args(int ac, char **av)
 	return (0);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-    t_data  data;
+	t_data	data;
 
-    if (check_args(ac, av))
-        return(0);
-    get_data(av, &data);
-    end_diner(&data);
-    return(0);
+	if (check_args(ac, av))
+		return (0);
+	get_data(av, &data);
+	end_diner(&data);
+	return (0);
 }
-    // printf("time to die %d\n", data.time_die);
-    // printf("time to eat  %d\n", data.time_eat);
-    // printf("time to sleep %d\n", data.time_sleep);
-    // printf("nbr must eat %d\n", data.must_eat);

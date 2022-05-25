@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   DiningTable.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aboudoun <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/25 19:40:15 by aboudoun          #+#    #+#             */
+/*   Updated: 2022/05/25 19:42:19 by aboudoun         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include"philosophers.h"
 
 void	eat(t_philo *ph)
@@ -16,7 +28,7 @@ void	ft_sleep(t_philo *ph)
 	usleep((ph->data->time_sleep) * 1000);
 }
 
-void    takeFork(t_philo *ph)
+void	take_fork(t_philo *ph)
 {
 	pthread_mutex_lock(&(ph->left_fork));
 	ft_print("taking fork", ph->nbr + 1, ph->data);
@@ -27,17 +39,16 @@ void    takeFork(t_philo *ph)
 	pthread_mutex_unlock(ph->right_fork);
 }
 
-void    *ft_actions(void *philo)
+void	*ft_actions(void *philo)
 {
-	t_philo *ph;
+	t_philo	*ph;
 
 	ph = philo;
-
 	if (ph->nbr % 2 == 0)
 		usleep(100);
 	while (1)
 	{
-		takeFork(ph);
+		take_fork(ph);
 		ft_sleep(ph);
 		ft_print("is thinking", ph->nbr, ph->data);
 	}
