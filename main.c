@@ -1,5 +1,49 @@
 #include"philosophers.h"
 
+void	get_data(char **av, t_data *data)
+{
+	data->nb_philo = ft_atoi(av[1]);
+	data->time_die = ft_atoi(av[2]);
+	data->time_eat = ft_atoi(av[3]);
+	data->time_sleep = ft_atoi(av[4]);
+	if (av[5])
+		data->must_eat = ft_atoi(av[5]);
+	else
+		data->must_eat = 0;
+	data->on_dead = 0;
+	data->philo_have_eaten = 0;
+    get_philodata(data);
+}
+
+int	check_args(int ac, char **av)
+{
+	int	i;
+	int	j;
+
+	if (ac != 6 && ac != 5)
+	{
+		printf("%splease enter: ./philo [number_of_philosophers] ", WHT);
+		printf("%s[time_to_die] [time_to_eat] [time_to_sleep] ", WHT);
+		printf("%s[number_of_times_each_philosopher_must_eat (optional argument)]\n ", WHT);
+		printf("%s <time must be in milliseconds>\n", GRN);
+		return (1);
+	}
+	i = 0;
+	while (av[++i])
+	{
+		j = -1;
+		while (av[i][++j])
+		{
+			if (!(av[i][j] >= '0' && av[i][j] <= '9'))
+			{
+				printf("%sall arguments must be a positive number\n", RED);
+				return (1);
+			}
+		}
+	}
+	return (0);
+}
+
 int main(int ac, char **av)
 {
     t_data  data;
@@ -7,15 +51,7 @@ int main(int ac, char **av)
     if (check_args(ac, av))
         return(0);
     get_data(av, &data);
-    get_philodata(&data);
-    while (1)
-    {
-        if (data.philo_have_eaten == data.nb_philo)
-        {
-            printf("we are done\n");
-            return(0);
-        }
-    }
+    end_diner(&data);
     return(0);
 }
     // printf("time to die %d\n", data.time_die);

@@ -6,83 +6,35 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:41:18 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/05/24 18:56:25 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/05/25 19:02:15 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"philosophers.h"
 
-void	get_philodata(t_data *data)
+void	ft_destroy(t_data *data)
 {
-	int	i;
+	int i;
 
-	//pthread_mutex_init(&(data->print), NULL);
-	data->philo = malloc(sizeof(t_philo) * data->nb_philo);
 	i = -1;
-	while (++i < data->nb_philo)
+	while(++i <= data->nb_philo)
 	{
-		data->philo[i].nbr = i;
-		pthread_mutex_init(&(data->philo[i].left_fork), NULL);
-		data->philo[i].data = data;
+		pthread_mutex_destroy(&(data->philo[i].left_fork));
 	}
-	i = -1;
-	while (++i < data->nb_philo)
-	{
-		if (i == data->nb_philo - 1)
-			data->philo[i].right_fork = &(data->philo[0].left_fork);
-		else
-			data->philo[i].right_fork = &(data->philo[i + 1].left_fork);
-		pthread_create(&(data->philo->philo_t), \
-            NULL, &ft_actions, &data->philo[i]);
-	}
-	while (i)
-	{
-		pthread_join(data->philo[i].philo_t, NULL);
-		i--;
-	}
+	pthread_mutex_destroy(&(data->print));
+	free(data->philo);
 }
 
-void	get_data(char **av, t_data *data)
+void	ft_print(char *messege, int p, t_data *data)
 {
-	data->nb_philo = ft_atoi(av[1]);
-	data->time_die = ft_atoi(av[2]);
-	data->time_eat = ft_atoi(av[3]);
-	data->time_sleep = ft_atoi(av[4]);
-	if (av[5])
-		data->must_eat = ft_atoi(av[5]);
-	else
-		data->must_eat = 0;
-}
-
-int	check_args(int ac, char **av)
-{
-	int	i;
-	int	j;
-
-	if (ac != 6 && ac != 5)
-	{
-		printf("%swrong arguments\n", RED);
-		printf("%splease enter: ./philo [number_of_philosophers] ", WHT);
-		printf("%s[time_to_die] [time_to_eat] [time_to_sleep] ", WHT);
-		printf("%s[number_of_times_each_philosopher_must_eat (optional argument)]\n ", WHT);
-		printf("%s <time must be in milliseconds>\n", GRN);
-		return (1);
-	}
-	i = 0;
-	while (av[++i])
-	{
-		j = -1;
-		while (av[i][++j])
-		{
-			if (!(av[i][j] >= '0' && av[i][j] <= '9'))
-			{
-				printf("%swrong arguments\n", RED);
-				printf("%sall arguments must be a positive number\n", RED);
-				return (1);
-			}
-		}
-	}
-	return (0);
+	(void)data;
+	int time;
+	
+	time = ft_get_time() -  data->print_time;
+	pthread_mutex_lock(&(data->print));
+	printf("%d %d %s\n", time, p, messege);
+	if (!data->on_dead)
+		pthread_mutex_unlock(&(data->print));
 }
 
 long long	ft_get_time(void)

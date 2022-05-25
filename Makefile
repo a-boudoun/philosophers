@@ -13,6 +13,8 @@ FLAGS = -Wall -Wextra -Werror
 MAND_FILES = main.c \
 			philoUtils.c\
 			DiningTable.c\
+			philo.c\
+			
 
 OBJ = $(MAND_FILES:%.c=%.o)
 all : $(NAME)
