@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aboudoun <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 19:44:51 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/05/25 19:50:07 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/05/26 11:23:00 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,15 @@ typedef struct s_philo
 
 typedef struct s_data
 {
-	t_philo			*philo;
-	int				on_dead;
 	int				nb_philo;
 	int				time_eat;
 	int				time_die;
 	int				time_sleep;
 	int				must_eat;
+	int				on_dead;
 	int				philo_have_eaten;
 	int				print_time;
+	t_philo			*philo;
 	pthread_mutex_t	print;
 }		t_data;
 

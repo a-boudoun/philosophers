@@ -6,7 +6,7 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:41:18 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/05/25 19:39:47 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/05/26 10:45:09 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,9 @@ void	ft_destroy(t_data *data)
 
 void	ft_print(char *messege, int p, t_data *data)
 {
-	int	time;
-
-	time = ft_get_time() - data->print_time;
 	pthread_mutex_lock(&(data->print));
-	printf("%d %d %s\n", time, p, messege);
-	if (!data->on_dead)
+	printf("%d %d %s\n", ((int)(ft_get_time() - data->print_time)), p, messege);
+	if (!data->on_dead && data->philo_have_eaten != data->nb_philo)
 		pthread_mutex_unlock(&(data->print));
 }
 

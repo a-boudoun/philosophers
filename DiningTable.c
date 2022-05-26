@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   DiningTable.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aboudoun <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 19:40:15 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/05/25 19:42:19 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/05/26 11:38:25 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,6 @@ void	*ft_actions(void *philo)
 	{
 		take_fork(ph);
 		ft_sleep(ph);
-		ft_print("is thinking", ph->nbr, ph->data);
+		ft_print("is thinking", ph->nbr + 1, ph->data);
 	}
 }

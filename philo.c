@@ -6,7 +6,7 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 19:37:16 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/05/25 20:06:29 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/05/26 11:40:59 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	end_diner(t_data *data)
 	{
 		if (data->philo_have_eaten == data->nb_philo)
 		{
-			printf("we are done\n");
+			ft_print("we are done", i + 1, data);
 			break ;
 		}
 		deth = (ft_get_time() - data->philo[i].start_time);
