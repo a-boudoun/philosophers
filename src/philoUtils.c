@@ -6,11 +6,11 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:41:18 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/05/27 17:30:06 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/05/27 17:55:37 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"philosophers.h"
+#include "philosophers.h"
 
 void	ft_print(char *messege, int p, t_data *data)
 {

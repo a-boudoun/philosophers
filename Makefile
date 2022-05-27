@@ -4,16 +4,16 @@ PURPLE=$'\x1b[35m
 
 NAME = philosophers
 
-HEADER = philosophers.h \
+HEADER = ./src/philosophers.h \
 
 
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
 
-MAND_FILES = main.c \
-			philoUtils.c\
-			DiningTable.c\
-			philo.c\
+MAND_FILES = ./src/main.c \
+			./src/philoUtils.c\
+			./src/DiningTable.c\
+			./src/philo.c\
 			
 
 OBJ = $(MAND_FILES:%.c=%.o)
