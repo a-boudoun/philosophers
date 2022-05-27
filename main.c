@@ -6,13 +6,13 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 19:42:39 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/05/25 20:04:22 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/05/27 17:35:10 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"philosophers.h"
 
-void	get_data(char **av, t_data *data)
+int	get_data(char **av, t_data *data)
 {
 	data->nb_philo = ft_atoi(av[1]);
 	data->time_die = ft_atoi(av[2]);
@@ -24,7 +24,15 @@ void	get_data(char **av, t_data *data)
 		data->must_eat = 0;
 	data->on_dead = 0;
 	data->philo_have_eaten = 0;
+	pthread_mutex_init(&(data->print), NULL);
+	data->philo = malloc(sizeof(t_philo) * data->nb_philo);
+	if (!(data->philo))
+	{
+		printf("malloc error\n");
+		return (1);
+	}
 	get_philodata(data);
+	return (0);
 }
 
 int	check_args(int ac, char **av)
@@ -48,7 +56,7 @@ int	check_args(int ac, char **av)
 		{
 			if (!(av[i][j] >= '0' && av[i][j] <= '9'))
 			{
-				printf("%sall arguments must be a positive number\n", RED);
+				printf("%sall arguments must be positive numbers\n", RED);
 				return (1);
 			}
 		}
@@ -61,8 +69,9 @@ int	main(int ac, char **av)
 	t_data	data;
 
 	if (check_args(ac, av))
-		return (0);
-	get_data(av, &data);
+		return (1);
+	if (get_data(av, &data))
+		return (1);
 	end_diner(&data);
 	return (0);
 }

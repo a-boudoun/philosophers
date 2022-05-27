@@ -6,7 +6,7 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 19:37:16 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/05/26 11:40:59 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/05/27 17:36:33 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	end_diner(t_data *data)
 			ft_print("we are done", i + 1, data);
 			break ;
 		}
-		deth = (ft_get_time() - data->philo[i].start_time);
+		deth = (ft_get_time() - data->philo[i].last_eat);
 		if (deth >= data->time_die)
 		{
 			data->on_dead = 1;
@@ -43,10 +43,8 @@ void	get_philodata(t_data *data)
 {
 	int	i;
 
-	pthread_mutex_init(&(data->print), NULL);
-	data->philo = malloc(sizeof(t_philo) * data->nb_philo);
 	i = -1;
-	data->print_time = ft_get_time();
+	data->start_time = ft_get_time();
 	while (++i < data->nb_philo)
 	{
 		data->philo[i].nbr = i;
@@ -57,7 +55,7 @@ void	get_philodata(t_data *data)
 	while (++i < data->nb_philo)
 	{
 		data->philo[i].nbr_eat = 0;
-		data->philo[i].start_time = ft_get_time();
+		data->philo[i].last_eat = ft_get_time();
 		if (i == data->nb_philo - 1)
 			data->philo[i].right_fork = &(data->philo[0].left_fork);
 		else

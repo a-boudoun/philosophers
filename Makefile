@@ -17,6 +17,7 @@ MAND_FILES = main.c \
 			
 
 OBJ = $(MAND_FILES:%.c=%.o)
+
 all : $(NAME)
 
 $(NAME): $(OBJ) $(HEADER)

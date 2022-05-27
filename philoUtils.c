@@ -6,11 +6,22 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:41:18 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/05/26 10:45:09 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/05/27 17:30:06 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"philosophers.h"
+
+void	ft_print(char *messege, int p, t_data *data)
+{
+	int	time;
+
+	time = ft_get_time() - data->start_time;
+	pthread_mutex_lock(&(data->print));
+	printf("%dms  %d  %s\n", time, p, messege);
+	if (!data->on_dead && (data->philo_have_eaten != data->nb_philo))
+		pthread_mutex_unlock(&(data->print));
+}
 
 void	ft_destroy(t_data *data)
 {
@@ -23,14 +34,6 @@ void	ft_destroy(t_data *data)
 	}
 	pthread_mutex_destroy(&(data->print));
 	free(data->philo);
-}
-
-void	ft_print(char *messege, int p, t_data *data)
-{
-	pthread_mutex_lock(&(data->print));
-	printf("%d %d %s\n", ((int)(ft_get_time() - data->print_time)), p, messege);
-	if (!data->on_dead && data->philo_have_eaten != data->nb_philo)
-		pthread_mutex_unlock(&(data->print));
 }
 
 long long	ft_get_time(void)
