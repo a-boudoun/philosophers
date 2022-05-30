@@ -6,7 +6,7 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 19:40:15 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/05/30 15:06:09 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/05/30 15:39:13 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,6 @@ void	*ft_actions(void *philo)
 		take_fork(ph);
 		ft_sleep(ph);
 		ft_print("is thinking", ph->nbr + 1, ph->data);
+		usleep(100);
 	}
 }
