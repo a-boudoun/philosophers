@@ -4,7 +4,7 @@ PURPLE=$'\x1b[35m
 
 NAME = philosophers
 
-HEADER = ./src/philosophers.h \
+HEADER = ./include/philosophers.h \
 
 
 CC = gcc
