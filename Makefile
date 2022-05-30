@@ -26,7 +26,7 @@ $(NAME): $(OBJ) $(HEADER)
 
 
 %.o : %.c $(HEADER)
-	@$(CC) $(FLAGS) -o $@ -c $<
+	@$(CC) -I./include $(FLAGS) -o $@ -c $<
 	@echo "$(GREEN)" "compiling $<"
 
 clean:

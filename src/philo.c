@@ -6,11 +6,11 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 19:37:16 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/05/30 11:10:52 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/05/30 15:21:06 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/philosophers.h"
+#include "philosophers.h"
 
 int	end_diner(t_data *data)
 {
