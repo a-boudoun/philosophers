@@ -18,9 +18,9 @@ void	ft_print(char *messege, int p, t_data *data)
 
 	time = ft_get_time() - data->start_time;
 	pthread_mutex_lock(&(data->print));
-	printf("%dms  %d  %s\n", time, p, messege);
-	if (!data->on_dead && (data->philo_have_eaten != data->nb_philo))
-		pthread_mutex_unlock(&(data->print));
+	if (!data->finish && !data->on_dead)
+		printf("%dms  %d  %s\n", time, p, messege);
+	pthread_mutex_unlock(&(data->print));
 }
 
 void	ft_destroy(t_data *data)
@@ -30,6 +30,7 @@ void	ft_destroy(t_data *data)
 	i = -1;
 	while (++i <= data->nb_philo)
 	{
+		pthread_join(data->philo[i].philo_t, NULL);
 		pthread_mutex_destroy(&(data->philo[i].left_fork));
 	}
 	pthread_mutex_destroy(&(data->print));

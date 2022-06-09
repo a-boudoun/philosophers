@@ -23,6 +23,7 @@ int	get_data(char **av, t_data *data)
 	else
 		data->must_eat = 0;
 	data->on_dead = 0;
+	data->finish = 0;
 	data->philo_have_eaten = 0;
 	pthread_mutex_init(&(data->print), NULL);
 	data->philo = malloc(sizeof(t_philo) * data->nb_philo);
@@ -72,6 +73,6 @@ int	main(int ac, char **av)
 		return (1);
 	if (get_data(av, &data))
 		return (1);
-	end_diner(&data);
+	ft_destroy(&data);
 	return (0);
 }

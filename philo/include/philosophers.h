@@ -45,6 +45,7 @@ typedef struct s_data
 	int				time_sleep;
 	int				must_eat;
 	int				on_dead;
+	int				finish;
 	int				philo_have_eaten;
 	int				start_time;
 	t_philo			*philo;
@@ -53,7 +54,7 @@ typedef struct s_data
 
 /*****MAIN_FUNCTIONS****/
 long long	ft_get_time(void);
-int			end_diner(t_data *data);
+void		*end_diner(void *ndata);
 void		ft_print(char *messege, int p, t_data *data);
 void		ft_destroy(t_data *data);
 int			get_data(char **av, t_data *data);

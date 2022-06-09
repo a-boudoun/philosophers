@@ -53,11 +53,12 @@ void	*ft_actions(void *philo)
 	ph = philo;
 	if (ph->nbr % 2 == 0)
 		ft_usleep(100, ft_get_time());
-	while (1)
+	while (!ph->data->finish)
 	{
 		take_fork(ph);
 		ft_sleep(ph);
 		ft_print("is thinking", ph->nbr + 1, ph->data);
 		usleep(100);
 	}
+	return (NULL);
 }

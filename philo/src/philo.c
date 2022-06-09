@@ -12,34 +12,41 @@
 
 #include "philosophers.h"
 
-int	end_diner(t_data *data)
+void	*end_diner(void *ndata)
 {
 	int	i;
 	int	deth;
-
+	t_data *data;
+	
+	data = ndata;
 	i = -1;
 	while (++i <= data->nb_philo)
 	{
+		//printf("data->philo_have_eaten: %d\n", data->philo_have_eaten);
 		if (data->philo_have_eaten == data->nb_philo)
+		{
+			data->finish = 1;
 			break ;
+		}
 		deth = (ft_get_time() - data->philo[i].last_eat);
 		if (deth >= data->time_die)
 		{
-			data->on_dead = 1;
 			ft_print("died", i + 1, data);
+			data->on_dead = 1;
+			data->finish = 1;
 			break ;
 		}
 		if (i == data->nb_philo - 1)
 			i = -1;
 		usleep(100);
 	}
-	ft_destroy(data);
-	return (0);
+	return (NULL); 
 }
 
 void	get_philodata(t_data *data)
 {
 	int	i;
+	pthread_t check;
 
 	i = -1;
 	data->start_time = ft_get_time();
@@ -58,8 +65,9 @@ void	get_philodata(t_data *data)
 			data->philo[i].right_fork = &(data->philo[0].left_fork);
 		else
 			data->philo[i].right_fork = &(data->philo[i + 1].left_fork);
-		pthread_create(&(data->philo->philo_t), \
+		pthread_create(&(data->philo[i].philo_t), \
 				NULL, &ft_actions, &data->philo[i]);
-		pthread_detach(data->philo->philo_t);
 	}
+	pthread_create(&check, NULL, &end_diner, &data);
+	pthread_detach(check);
 }
