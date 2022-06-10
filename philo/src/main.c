@@ -22,7 +22,6 @@ int	get_data(char **av, t_data *data)
 		data->must_eat = ft_atoi(av[5]);
 	else
 		data->must_eat = 0;
-	data->on_dead = 0;
 	data->finish = 0;
 	data->philo_have_eaten = 0;
 	pthread_mutex_init(&(data->print), NULL);

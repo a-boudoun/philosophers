@@ -18,8 +18,18 @@ void	ft_print(char *messege, int p, t_data *data)
 
 	time = ft_get_time() - data->start_time;
 	pthread_mutex_lock(&(data->print));
-	if (!data->finish && !data->on_dead)
+	if (!data->finish)
 		printf("%dms  %d  %s\n", time, p, messege);
+	pthread_mutex_unlock(&(data->print));
+}
+
+void	ft_print_dead(char *messege, int p, t_data *data)
+{
+	int	time;
+
+	time = ft_get_time() - data->start_time;
+	pthread_mutex_lock(&(data->print));
+	printf("%dms  %d  %s\n", time, p, messege);
 	pthread_mutex_unlock(&(data->print));
 }
 

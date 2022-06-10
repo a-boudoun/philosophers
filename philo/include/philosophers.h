@@ -44,7 +44,6 @@ typedef struct s_data
 	int				time_die;
 	int				time_sleep;
 	int				must_eat;
-	int				on_dead;
 	int				finish;
 	int				philo_have_eaten;
 	int				start_time;
@@ -62,5 +61,6 @@ void		get_philodata(t_data *data);
 int			check_args(int ac, char **av);
 int			ft_atoi(char *str);
 void		*ft_actions(void *philo);
+void		ft_print_dead(char *messege, int p, t_data *data);
 
 #endif
