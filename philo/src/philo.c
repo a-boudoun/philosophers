@@ -15,18 +15,16 @@
 void	*end_diner(void *ndata)
 {
 	int		i;
-	int		deth;
 	t_data	*data;
 
 	data = ndata;
 	i = -1;
 	while (++i <= data->nb_philo)
 	{
-		deth = (ft_get_time() - data->philo[i].last_eat);
-		if (deth >= data->time_die)
+		if ((ft_get_time() - data->philo[i].last_eat) >= data->time_die)
 		{
 			data->finish = 1;
-			usleep(100);
+			usleep(200);
 			ft_print_dead("died", i + 1, data);
 			break ;
 		}
@@ -37,6 +35,7 @@ void	*end_diner(void *ndata)
 		}
 		if (i == data->nb_philo - 1)
 			i = -1;
+		usleep(100);
 	}
 	return (NULL);
 }
