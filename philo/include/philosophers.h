@@ -6,7 +6,7 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 19:44:51 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/05/27 17:36:44 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/06/12 21:22:33 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,6 @@ int			check_args(int ac, char **av);
 int			ft_atoi(char *str);
 void		*ft_actions(void *philo);
 void		ft_print_dead(char *messege, int p, t_data *data);
+void		ft_usleep(unsigned long time, unsigned long start);
 
 #endif

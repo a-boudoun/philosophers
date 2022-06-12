@@ -14,6 +14,7 @@ MAND_FILES = ./src/main.c \
 			./src/philoUtils.c\
 			./src/DiningTable.c\
 			./src/philo.c\
+			./src/ft_usleep.c\
 			
 
 OBJ = $(MAND_FILES:%.c=%.o)

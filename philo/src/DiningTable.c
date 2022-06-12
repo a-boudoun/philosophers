@@ -6,18 +6,11 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 19:40:15 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/05/30 15:39:13 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/06/12 21:25:11 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
-
-static void	ft_usleep(unsigned long time, unsigned long start)
-{
-	usleep(time * 1000 * 0.95);
-	while (ft_get_time() - start < time)
-		usleep(50);
-}
 
 void	eat(t_philo *ph)
 {
@@ -35,12 +28,15 @@ void	ft_sleep(t_philo *ph)
 	ft_usleep((ph->data->time_sleep), ft_get_time());
 }
 
-void	take_fork(t_philo *ph)
+void	take_left_fork(t_philo *ph)
 {
 	pthread_mutex_lock(&(ph->left_fork));
 	ft_print("is taking a fork", ph->nbr + 1, ph->data);
+}
+
+void	take_right_fork(t_philo *ph)
+{
 	pthread_mutex_lock(ph->right_fork);
-	ft_print("is taking a fork", ph->nbr + 1, ph->data);
 	eat(ph);
 	pthread_mutex_unlock(&(ph->left_fork));
 	pthread_mutex_unlock(ph->right_fork);
@@ -55,7 +51,14 @@ void	*ft_actions(void *philo)
 		ft_usleep(100, ft_get_time());
 	while (!ph->data->finish)
 	{
-		take_fork(ph);
+		take_left_fork(ph);
+		if (ph->data->nb_philo == 1)
+		{
+			ph->data->finish = 1;
+			ft_usleep(ph->data->time_die, ft_get_time());
+			break ;
+		}
+		take_right_fork(ph);
 		ft_sleep(ph);
 		ft_print("is thinking", ph->nbr + 1, ph->data);
 		usleep(100);
