@@ -4,17 +4,17 @@ PURPLE=$'\x1b[35m
 
 NAME = philo
 
-HEADER = ./include/philosophers.h \
+HEADER = ./philo_/include/philosophers.h \
 
 
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
 
-MAND_FILES = ./src/main.c \
-			./src/philoUtils.c\
-			./src/DiningTable.c\
-			./src/philo.c\
-			./src/ft_usleep.c\
+MAND_FILES = ./philo_/src/main.c \
+			./philo_/src/philoUtils.c\
+			./philo_/src/DiningTable.c\
+			./philo_/src/philo.c\
+			./philo_/src/ft_usleep.c\
 			
 
 OBJ = $(MAND_FILES:%.c=%.o)
@@ -27,7 +27,7 @@ $(NAME): $(OBJ) $(HEADER)
 
 
 %.o : %.c $(HEADER)
-	@$(CC) -I./include $(FLAGS) -o $@ -c $<
+	@$(CC) -I./philo_/include $(FLAGS) -o $@ -c $<
 	@echo "$(GREEN)" "compiling $<"
 
 clean:

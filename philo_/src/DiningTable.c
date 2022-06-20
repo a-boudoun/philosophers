@@ -6,7 +6,7 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 19:40:15 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/06/12 21:25:11 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/06/20 20:35:46 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	take_left_fork(t_philo *ph)
 void	take_right_fork(t_philo *ph)
 {
 	pthread_mutex_lock(ph->right_fork);
+	ft_print("is taking a fork", ph->nbr + 1, ph->data);
 	eat(ph);
 	pthread_mutex_unlock(&(ph->left_fork));
 	pthread_mutex_unlock(ph->right_fork);
