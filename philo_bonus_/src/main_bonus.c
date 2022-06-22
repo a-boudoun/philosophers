@@ -6,13 +6,16 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 19:42:39 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/06/20 20:46:47 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/06/22 22:22:07 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers_bonus.h"
-
-int	get_data(char **av, t_data *data)
+/*644
+6 > read/write permisson for the user
+4 > read only for the group and others
+*/
+void	get_data(char **av, t_data *data)
 {
 	data->nb_philo = ft_atoi(av[1]);
 	data->time_die = ft_atoi(av[2]);
@@ -22,31 +25,27 @@ int	get_data(char **av, t_data *data)
 		data->must_eat = ft_atoi(av[5]);
 	else
 		data->must_eat = 0;
-	data->finish = 0;
 	data->philo_have_eaten = 0;
-	pthread_mutex_init(&(data->print), NULL);
 	data->philo = malloc(sizeof(t_philo) * data->nb_philo);
-	if (!(data->philo))
-	{
-		printf("malloc error\n");
-		return (1);
-	}
+	data->table_id = malloc(sizeof(int));
+	if (!(data->philo) || !(data->table_id))
+		print_err("malloc error\n");
+	data->forks = sem_open("forks", O_CREAT, 644, data->nb_philo);
+	data->print = sem_open("print", O_CREAT, 644, 1);
 	get_philodata(data);
-	return (0);
 }
 
-int	check_args(int ac, char **av)
+void	check_args(int ac, char **av)
 {
 	int	i;
 	int	j;
 
 	if (ac != 6 && ac != 5)
 	{
-		printf("%splease enter: ./philo [number_of_philosophers] ", WHT);
-		printf("%s[time_to_die] [time_to_eat] [time_to_sleep] [number_of", WHT);
-		printf("%s_times_each_philosopher_must_eat(optional argument)]\n ", WHT);
-		printf("%s <time must be in milliseconds>\n", RED);
-		return (1);
+		print_err("%splease enter: ./philo [number_of_philosophers] ");
+		print_err("%s[time_to_die] [time_to_eat] [time_to_sleep] [number_of");
+		print_err("%s_times_each_philosopher_must_eat(optional argument)]\n ");
+		print_err("%s <time must be in milliseconds>\n");
 	}
 	i = 0;
 	while (av[++i])
@@ -55,23 +54,17 @@ int	check_args(int ac, char **av)
 		while (av[i][++j])
 		{
 			if (!(av[i][j] >= '0' && av[i][j] <= '9'))
-			{
-				printf("%sall arguments must be positive numbers\n", RED);
-				return (1);
-			}
+				print_err("%sall arguments must be positive numbers\n");
 		}
 	}
-	return (0);
 }
 
 int	main(int ac, char **av)
 {
 	t_data	data;
 
-	if (check_args(ac, av))
-		return (1);
-	if (get_data(av, &data))
-		return (1);
+	check_args(ac, av);
+	get_data(av, &data);
 	ft_destroy(&data);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 19:44:51 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/06/12 21:22:33 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/06/22 21:25:00 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,6 @@
 # include<stdio.h>
 # include<stdlib.h>
 # include <pthread.h>
-
-/******COLORS******/
-# define RED "\x1B[31m"
-# define GRN "\x1B[32m"
-# define WHT "\x1B[37m"
 
 typedef struct s_philo
 {
@@ -63,5 +58,6 @@ int			ft_atoi(char *str);
 void		*ft_actions(void *philo);
 void		ft_print_dead(char *messege, int p, t_data *data);
 void		ft_usleep(unsigned long time, unsigned long start);
+void		print_err(char *message);
 
 #endif

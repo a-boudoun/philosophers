@@ -6,7 +6,7 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:41:18 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/06/20 20:46:24 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/06/22 22:33:27 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,19 @@
 void	ft_print(char *messege, int p, t_data *data)
 {
 	int	time;
-
+	sem_wait(data->print);
 	time = ft_get_time() - data->start_time;
-	pthread_mutex_lock(&(data->print));
-	if (!data->finish)
-		printf("%dms  %d  %s\n", time, p, messege);
-	pthread_mutex_unlock(&(data->print));
+	printf("%dms  %d  %s\n", time, p, messege);
+	sem_post(data->print);
 }
 
 void	ft_print_dead(char *messege, int p, t_data *data)
 {
 	int	time;
-
+	sem_wait(data->print);
 	time = ft_get_time() - data->start_time;
-	pthread_mutex_lock(&(data->print));
 	printf("%dms  %d  %s\n", time, p, messege);
-	pthread_mutex_unlock(&(data->print));
+	sem_post(data->print);
 }
 
 void	ft_destroy(t_data *data)
@@ -39,11 +36,6 @@ void	ft_destroy(t_data *data)
 
 	i = -1;
 	while (++i <= data->nb_philo)
-	{
-		pthread_join(data->philo[i].philo_t, NULL);
-		pthread_mutex_destroy(&(data->philo[i].left_fork));
-	}
-	pthread_mutex_destroy(&(data->print));
 	free(data->philo);
 }
 
