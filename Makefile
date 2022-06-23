@@ -21,7 +21,7 @@ MAND_FILES = ./philo_/src/main.c \
 			./philo_/src/philo.c\
 			./philo_/src/ft_usleep.c\
 			./philo_/src/ft_print_error.c\
-			./philo_/src/start_left.c\
+			./philo_/src/left_or_right.c\
 			
 BON_FILES = ./philo_bonus_/src/main_bonus.c \
 			./philo_bonus_/src/philoUtils_bonus.c\
