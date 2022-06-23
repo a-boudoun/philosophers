@@ -6,7 +6,7 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 19:40:15 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/06/23 02:40:30 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/06/23 03:07:21 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ void	*end_diner(void *philo)
 	ph = philo;
 	while (!ph->dead)
 	{
-		printf("TIME%lld\n%lld\n", ft_get_time(), ph->should_die);
 		if (ft_get_time() >= ph->should_die)
 		{
 			ph->dead = 1;
-			ft_print("died", ph->nbr + 1, ph);
+			usleep(200);
+			ft_print_dead("died", ph->nbr + 1, ph);
 			while (++i < ph->data->nb_philo)
 				sem_post(ph->data->finish);
 		}
@@ -66,9 +66,6 @@ void	ft_actions(t_philo *ph)
 	pthread_t	check;
 
 	ph->should_die = ph->data->start_time + ph->data->time_die;
-	printf("time sould die:%lld\n", ph->should_die);
-	printf("time die:%d\n",  ph->data->time_die);
-	printf("start time:%d\n", ph->data->start_time);
 	pthread_create(&check, NULL, &end_diner, ph);
 	pthread_detach(check);
 	if (ph->nbr % 2 == 0)

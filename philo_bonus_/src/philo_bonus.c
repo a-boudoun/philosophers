@@ -6,7 +6,7 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 19:37:16 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/06/23 02:28:13 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/06/23 03:05:01 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	get_philodata(t_data *data)
 	data->start_time = ft_get_time();
 	while (++i < data->nb_philo)
 	{
+		
+		data->philo[i].eat = sem_open("eat", O_CREAT, 644, 1);
 		data->philo[i].nbr = i;
 		data->philo[i].dead = 0;
 		data->philo[i].data = data;

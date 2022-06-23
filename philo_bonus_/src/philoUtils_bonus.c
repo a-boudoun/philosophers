@@ -6,7 +6,7 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:41:18 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/06/23 02:11:30 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/06/23 03:06:53 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	ft_print(char *messege, int p, t_philo *ph)
 	int	time;
 	sem_wait(ph->data->print);
 	time = ft_get_time() - ph->data->start_time;
-	printf("%dms  %d  %s\n", time, p, messege);
-	//if (!ph->dead)
+	if (!ph->dead)
+		printf("%dms  %d  %s\n", time, p, messege);
 	sem_post(ph->data->print);
 }
 
@@ -36,7 +36,7 @@ void	ft_destroy(t_data *data)
 	int	i;
 
 	i = -1;
-	while (++i <= data->nb_philo)
+	while (++i < data->nb_philo)
 		kill(data->table_id[i], SIGKILL);
 	free(data->table_id);
 	free(data->philo);

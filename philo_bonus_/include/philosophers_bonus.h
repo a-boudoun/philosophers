@@ -6,7 +6,7 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 19:44:51 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/06/23 02:41:51 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/06/23 03:01:20 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 
 typedef struct s_philo
 {
+	sem_t			*eat;
 	int				nbr;
 	int				nbr_eat;
 	long long		should_die;
