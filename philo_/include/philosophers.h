@@ -6,7 +6,7 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 19:44:51 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/06/23 14:46:57 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/06/23 19:37:55 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ typedef struct s_data
 }		t_data;
 
 /*****MAIN_FUNCTIONS****/
+void		start_left(t_philo *ph);
+void		start_right(t_philo *ph);
 long long	ft_get_time(void);
 void		end_diner(t_data *data);
 void		ft_print(char *messege, int p, t_data *data);
@@ -65,5 +67,11 @@ void		*ft_actions(void *philo);
 void		ft_print_dead(char *messege, int p, t_data *data);
 void		ft_usleep(unsigned long time, unsigned long start);
 void		print_err(char *message);
+
+/**DINING TABLE FUNCTIONS**/
+void		take_right_fork(t_philo *ph);
+void		take_left_fork(t_philo *ph);
+void		ft_sleep(t_philo *ph);
+void		eat(t_philo *ph);
 
 #endif

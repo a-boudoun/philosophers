@@ -6,7 +6,7 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 19:40:15 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/06/23 18:40:49 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/06/23 19:33:38 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,6 @@ void	take_right_fork(t_philo *ph)
 {
 	pthread_mutex_lock(ph->right_fork);
 	ft_print("is taking a fork", ph->nbr + 1, ph->data);
-	eat(ph);
-	pthread_mutex_unlock(&(ph->left_fork));
-	pthread_mutex_unlock(ph->right_fork);
 }
 
 void	*ft_actions(void *philo)
@@ -51,19 +48,7 @@ void	*ft_actions(void *philo)
 
 	ph = philo;
 	if (ph->nbr % 2 == 0)
-		ft_usleep(100, ft_get_time());
-	while (!ph->data->finish)
-	{
-		take_left_fork(ph);
-		if (ph->data->nb_philo == 1)
-		{
-			ph->data->finish = 1;
-			ft_usleep(ph->data->time_die, ft_get_time());
-			break ;
-		}
-		take_right_fork(ph);
-		ft_sleep(ph);
-		ft_print("is thinking", ph->nbr + 1, ph->data);
-	}
+		start_left(ph);
+	start_right(ph);
 	return (NULL);
 }
