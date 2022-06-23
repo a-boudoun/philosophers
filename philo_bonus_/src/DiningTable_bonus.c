@@ -6,7 +6,7 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 19:40:15 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/06/23 02:28:53 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/06/23 02:32:42 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	*end_diner(void *philo)
 	ph = philo;
 	while (!ph->dead)
 	{
-		if (ft_get_time() >= ph->data->time_die)
+		// printf("TIME%lld\n%lld\n", ft_get_time(), ph->data->time_die);
+		if (ft_get_time() >= ph->should_die)
 		{
 			ph->dead = 1;
 			ft_print("died", ph->nbr + 1, ph);
