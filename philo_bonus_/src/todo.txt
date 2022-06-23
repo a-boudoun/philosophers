@@ -1,0 +1,2 @@
+fixing deadlock without usleep
+in 4 310 200 100 die printed on 400 instead of 310 > only in mandatory try to lunch another thread to check death

@@ -6,34 +6,11 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 19:40:15 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/06/23 15:51:13 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/06/23 18:41:04 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philosophers_bonus.h"
-
-void	*end_diner(void *philo)
-{
-	t_philo	*ph;
-	int		i;
-
-	i = -1;
-	ph = philo;
-	while (!ph->dead)
-	{
-		sem_wait(ph->eat);
-		if (ft_get_time() >= ph->should_die)
-		{
-			ph->dead = 1;
-			ft_print_dead("died", ph->nbr + 1, ph);
-			while (++i < ph->data->nb_philo)
-				sem_post(ph->data->finish);
-		}
-		sem_post(ph->eat);
-		usleep(100);
-	}
-	return (NULL);
-}
 
 void	eat(t_philo *ph)
 {
@@ -77,6 +54,5 @@ void	ft_actions(t_philo *ph)
 		take_forks(ph);
 		ft_sleep(ph);
 		ft_print("is thinking", ph->nbr + 1, ph);
-		usleep(100);
 	}
 }

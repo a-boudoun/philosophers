@@ -6,11 +6,33 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 19:37:16 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/06/23 14:27:47 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/06/23 18:41:10 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philosophers_bonus.h"
+
+void	*end_diner(void *philo)
+{
+	t_philo	*ph;
+	int		i;
+
+	i = -1;
+	ph = philo;
+	while (!ph->dead)
+	{
+		sem_wait(ph->eat);
+		if (ft_get_time() >= ph->should_die)
+		{
+			ph->dead = 1;
+			ft_print_dead("died", ph->nbr + 1, ph);
+			while (++i < ph->data->nb_philo)
+				sem_post(ph->data->finish);
+		}
+		sem_post(ph->eat);
+	}
+	return (NULL);
+}
 
 void	get_philodata(t_data *data)
 {

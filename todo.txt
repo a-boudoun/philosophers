@@ -1,3 +1,0 @@
-print the error on stderr
-malloc struct first at mand and bonus
-remove deadlock by not sleeping if philo.id%2 == 0
