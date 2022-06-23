@@ -49,7 +49,7 @@ typedef struct s_data
 	int				time_sleep;
 	int				must_eat;
 	int				philo_have_eaten;
-	long long 		start_time;
+	long long		start_time;
 	int				*table_id;
 	t_philo			*philo;
 }		t_data;

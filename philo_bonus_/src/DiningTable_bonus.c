@@ -6,7 +6,7 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 19:40:15 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/06/23 03:07:21 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/06/23 03:33:17 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	*end_diner(void *philo)
 {
 	t_philo	*ph;
-	int	i;
+	int		i;
 
 	i = -1;
 	ph = philo;
@@ -65,7 +65,6 @@ void	ft_actions(t_philo *ph)
 {
 	pthread_t	check;
 
-	ph->should_die = ph->data->start_time + ph->data->time_die;
 	pthread_create(&check, NULL, &end_diner, ph);
 	pthread_detach(check);
 	if (ph->nbr % 2 == 0)
@@ -77,5 +76,4 @@ void	ft_actions(t_philo *ph)
 		ft_print("is thinking", ph->nbr + 1, ph);
 		usleep(100);
 	}
-	//pthread_join(check, NULL);
 }

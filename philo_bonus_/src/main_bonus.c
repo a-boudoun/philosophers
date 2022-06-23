@@ -12,9 +12,9 @@
 
 #include "../include/philosophers_bonus.h"
 /*644
-6 > read/write permisson for the user
-4 > read only for the group and others
-*/
+  6 > read/write permisson for the user
+  4 > read only for the group and others
+  */
 void	get_data(char **av, t_data *data)
 {
 	data->nb_philo = ft_atoi(av[1]);
@@ -61,16 +61,17 @@ void	check_args(int ac, char **av)
 	}
 }
 
-void	semaphore_unlink()
+void	semaphore_unlink(void)
 {
 	sem_unlink("print");
 	sem_unlink("finish");
 	sem_unlink("forks");
 }
+
 int	main(int ac, char **av)
 {
 	t_data	data;
-	int i;
+	int		i;
 
 	i = -1;
 	semaphore_unlink();

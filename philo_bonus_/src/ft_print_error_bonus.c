@@ -12,7 +12,7 @@
 
 #include"../include/philosophers_bonus.h"
 
-static int  ft_strlen(char *str)
+static int	ft_strlen(char *str)
 {
 	int	i;
 
@@ -22,8 +22,8 @@ static int  ft_strlen(char *str)
 	return (i);
 }
 
-void    print_err(char *message)
+void	print_err(char *message)
 {
-    write(2, message, ft_strlen(message));
+	write(2, message, ft_strlen(message));
 	exit(1);
 }

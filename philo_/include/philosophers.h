@@ -46,7 +46,7 @@ typedef struct s_data
 	int				must_eat;
 	int				finish;
 	int				philo_have_eaten;
-	long long 		start_time;
+	long long		start_time;
 	t_philo			*philo;
 	pthread_mutex_t	print;
 }		t_data;
