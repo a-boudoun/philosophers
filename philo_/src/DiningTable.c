@@ -6,7 +6,7 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 19:40:15 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/06/20 20:35:46 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/06/23 14:41:20 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 void	eat(t_philo *ph)
 {
+	pthread_mutex_lock(&(ph->eat));
 	ft_print("is eating", ph->nbr + 1, ph->data);
 	ph->last_eat = ft_get_time();
 	ph->nbr_eat++;
 	if (ph->nbr_eat == ph->data->must_eat)
 		ph->data->philo_have_eaten++;
 	ft_usleep((ph->data->time_eat), ft_get_time());
+	pthread_mutex_unlock(&(ph->eat));
 }
 
 void	ft_sleep(t_philo *ph)

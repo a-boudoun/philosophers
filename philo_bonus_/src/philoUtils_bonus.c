@@ -6,7 +6,7 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:41:18 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/06/23 03:33:34 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/06/23 14:28:45 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,10 @@ void	ft_destroy(t_data *data)
 
 	i = -1;
 	while (++i < data->nb_philo)
+	{
+		sem_close(data->philo[i].eat);	
 		kill(data->table_id[i], SIGKILL);
+	}
 	free(data->table_id);
 	free(data->philo);
 	sem_close(data->forks);

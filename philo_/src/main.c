@@ -6,7 +6,7 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 19:42:39 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/06/22 23:20:51 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/06/23 15:32:53 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,5 @@ int	main(int ac, char **av)
 		return (1);
 	if (get_data(av, &data))
 		return (1);
-	ft_destroy(&data);
 	return (0);
 }

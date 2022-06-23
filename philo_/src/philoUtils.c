@@ -6,7 +6,7 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:41:18 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/06/23 02:46:15 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/06/23 15:18:30 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ void	ft_destroy(t_data *data)
 	int	i;
 
 	i = -1;
-	while (++i <= data->nb_philo)
+	while (++i < data->nb_philo)
 	{
-		pthread_join(data->philo[i].philo_t, NULL);
 		pthread_mutex_destroy(&(data->philo[i].left_fork));
+		pthread_mutex_destroy(&(data->philo[i].eat));
 	}
 	pthread_mutex_destroy(&(data->print));
 	free(data->philo);

@@ -6,7 +6,7 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 19:44:51 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/06/23 02:45:59 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/06/23 14:46:57 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 typedef struct s_philo
 {
 	pthread_t		philo_t;
+	pthread_mutex_t	eat;
 	pthread_mutex_t	left_fork;
 	pthread_mutex_t	*right_fork;
 	int				nbr;
@@ -53,7 +54,7 @@ typedef struct s_data
 
 /*****MAIN_FUNCTIONS****/
 long long	ft_get_time(void);
-void		*end_diner(void *ndata);
+void		end_diner(t_data *data);
 void		ft_print(char *messege, int p, t_data *data);
 void		ft_destroy(t_data *data);
 int			get_data(char **av, t_data *data);

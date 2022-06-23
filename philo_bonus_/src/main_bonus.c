@@ -6,7 +6,7 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 19:42:39 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/06/23 03:07:36 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/06/23 14:28:04 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	semaphore_unlink(void)
 	sem_unlink("print");
 	sem_unlink("finish");
 	sem_unlink("forks");
+	sem_unlink("eat");
 }
 
 int	main(int ac, char **av)
