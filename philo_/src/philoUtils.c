@@ -6,7 +6,7 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:41:18 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/06/22 21:34:53 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/06/23 02:46:15 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	ft_destroy(t_data *data)
 	}
 	pthread_mutex_destroy(&(data->print));
 	free(data->philo);
-	free(data);
 }
 
 long long	ft_get_time(void)

@@ -6,7 +6,7 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 19:44:51 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/06/23 02:12:01 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/06/23 02:41:51 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct s_data
 	int				time_sleep;
 	int				must_eat;
 	int				philo_have_eaten;
-	int				start_time;
+	long long 		start_time;
 	int				*table_id;
 	t_philo			*philo;
 }		t_data;
