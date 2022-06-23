@@ -6,11 +6,11 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:41:18 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/06/22 22:33:27 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/06/23 01:01:05 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers_bonus.h"
+#include "../include/philosophers_bonus.h"
 
 void	ft_print(char *messege, int p, t_data *data)
 {
@@ -18,17 +18,18 @@ void	ft_print(char *messege, int p, t_data *data)
 	sem_wait(data->print);
 	time = ft_get_time() - data->start_time;
 	printf("%dms  %d  %s\n", time, p, messege);
-	sem_post(data->print);
+	if (!data->dead)
+		sem_post(data->print);
 }
 
-void	ft_print_dead(char *messege, int p, t_data *data)
-{
-	int	time;
-	sem_wait(data->print);
-	time = ft_get_time() - data->start_time;
-	printf("%dms  %d  %s\n", time, p, messege);
-	sem_post(data->print);
-}
+// void	ft_print_dead(char *messege, int p, t_data *data)
+// {
+// 	int	time;
+// 	sem_wait(data->print);
+// 	time = ft_get_time() - data->start_time;
+// 	printf("%dms  %d  %s\n", time, p, messege);
+// 	sem_post(data->print);
+// }
 
 void	ft_destroy(t_data *data)
 {
@@ -36,7 +37,11 @@ void	ft_destroy(t_data *data)
 
 	i = -1;
 	while (++i <= data->nb_philo)
+		kill(data->table_id[i], SIGKILL);
+	free(data->table_id);
 	free(data->philo);
+	sem_close(data->forks);
+	sem_close(data->print);
 }
 
 long long	ft_get_time(void)

@@ -47,7 +47,7 @@ $(NAME_B): $(OBJ_B) $(HEADER_B)
 	@echo "$(GREEN)" "compiling $<"
 
 %bonus.o : %bonus.c $(HEADER_B)
-	@$(CC) -I $(INCLUDE_B) $(FLAGS) -o $@ -c $<
+	@$(CC) -I$(INCLUDE_B) $(FLAGS) -o $@ -c $<
 	@echo "$(GREEN)" "compiling $<"
 
 clean:

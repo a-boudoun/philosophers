@@ -6,17 +6,40 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 19:40:15 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/06/22 22:37:08 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/06/23 01:02:50 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers_bonus.h"
+#include "../include/philosophers_bonus.h"
+
+void	*end_diner(void *philo)
+{
+	t_philo	*ph;
+	int	i;
+
+	i = -1;
+	ph = philo;
+	while (!ph->data->dead)
+	{
+		if ((ft_get_time() - ph->last_eat) >= ph->data->time_die)
+		{
+			ph->data->dead = 1;
+			ft_print("died", ph->nbr + 1, ph->data);
+			while (++i < ph->data->nb_philo)
+				sem_post(ph->data->finish);
+		}
+		usleep(100);
+	}
+	return (NULL);
+}
 
 void	eat(t_philo *ph)
 {
 	ft_print("is eating", ph->nbr + 1, ph->data);
 	ph->last_eat = ft_get_time();
 	ph->nbr_eat++;
+	if (ph->nbr_eat == ph->data->must_eat)
+		sem_post(ph->data->finish);
 	ft_usleep((ph->data->time_eat), ft_get_time());
 }
 
@@ -35,12 +58,14 @@ void	take_forks(t_philo *ph)
 	eat(ph);
 	sem_post(ph->data->forks);
 	sem_post(ph->data->forks);
-	if (ph->nbr_eat == ph->data->must_eat)
-		exit(0);
 }
 
 void	ft_actions(t_philo *ph)
 {
+	pthread_t	check;
+
+	pthread_create(&check, NULL, &end_diner, &ph);
+	pthread_detach(check);
 	if (ph->nbr % 2 == 0)
 		ft_usleep(100, ft_get_time());
 	while (1)
@@ -50,4 +75,5 @@ void	ft_actions(t_philo *ph)
 		ft_print("is thinking", ph->nbr + 1, ph->data);
 		usleep(100);
 	}
+	//pthread_join(check, NULL);
 }

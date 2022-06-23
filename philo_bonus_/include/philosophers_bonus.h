@@ -6,7 +6,7 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 19:44:51 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/06/22 22:38:45 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/06/23 00:56:10 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@
 # include <stdlib.h>
 # include <pthread.h>
 # include <semaphore.h>
+# include <signal.h>
+
+/******COLORS******/
+# define RED "\x1B[31m"
+# define GRN "\x1B[32m"
+# define WHT "\x1B[37m"
 
 typedef struct s_philo
 {
@@ -34,11 +40,13 @@ typedef struct s_data
 {
 	sem_t			*forks;
 	sem_t			*print;
+	sem_t			*finish;
 	int				nb_philo;
 	int				time_eat;
 	int				time_die;
 	int				time_sleep;
 	int				must_eat;
+	int				dead;
 	int				philo_have_eaten;
 	int				start_time;
 	int				*table_id;
@@ -50,11 +58,11 @@ long long	ft_get_time(void);
 void		*end_diner(void *ndata);
 void		ft_print(char *messege, int p, t_data *data);
 void		ft_destroy(t_data *data);
-int			get_data(char **av, t_data *data);
+void		get_data(char **av, t_data *data);
 void		get_philodata(t_data *data);
-int			check_args(int ac, char **av);
+void		check_args(int ac, char **av);
 int			ft_atoi(char *str);
-void		ft_actions(t_philo ph);
+void		ft_actions(t_philo *ph);
 void		ft_print_dead(char *messege, int p, t_data *data);
 void		ft_usleep(unsigned long time, unsigned long start);
 void		print_err(char *message);

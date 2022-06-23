@@ -6,7 +6,7 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 19:42:39 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/06/22 21:35:54 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/06/22 23:20:51 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ int	check_args(int ac, char **av)
 
 	if (ac != 6 && ac != 5)
 	{
-		print_err("please enter: ./philo [number_of_philosophers] ");
-		print_err("[time_to_die] [time_to_eat] [time_to_sleep] [number_of");
-		print_err("_times_each_philosopher_must_eat(optional argument)]\n ");
-		print_err(" <time must be in milliseconds>\n");
+		printf("%splease enter: ./philo [number_of_philosophers] ", WHT);
+		printf("%s[time_to_die] [time_to_eat] [time_to_sleep] [number_of", WHT);
+		printf("%s_times_each_philosopher_must_eat(optional argument)]\n ", WHT);
+		printf("%s <time must be in milliseconds>\n", RED);
 		return (1);
 	}
 	i = 0;
@@ -56,7 +56,7 @@ int	check_args(int ac, char **av)
 		{
 			if (!(av[i][j] >= '0' && av[i][j] <= '9'))
 			{
-				print_err("all arguments must be positive numbers\n");
+				print_err("error\nall arguments must be positive numbers\n");
 				return (1);
 			}
 		}
