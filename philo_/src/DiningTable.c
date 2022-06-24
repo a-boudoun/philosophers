@@ -6,7 +6,7 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 19:40:15 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/06/23 19:33:38 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/06/24 14:52:17 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	eat(t_philo *ph)
 	ph->nbr_eat++;
 	if (ph->nbr_eat == ph->data->must_eat)
 		ph->data->philo_have_eaten++;
-	ft_usleep((ph->data->time_eat), ft_get_time());
 	pthread_mutex_unlock(&(ph->eat));
+	ft_usleep((ph->data->time_eat), ft_get_time());
 }
 
 void	ft_sleep(t_philo *ph)
