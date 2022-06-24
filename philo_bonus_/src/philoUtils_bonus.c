@@ -6,7 +6,7 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:41:18 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/06/23 15:52:57 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/06/24 23:12:39 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ void	ft_print_dead(char *messege, int p, t_philo *ph)
 	sem_wait(ph->data->print);
 	time = ft_get_time() - ph->data->start_time;
 	printf("%dms  %d  %s\n", time, p, messege);
-	if (!ph->dead)
-		sem_post(ph->data->print);
 }
 
 void	ft_destroy(t_data *data)
