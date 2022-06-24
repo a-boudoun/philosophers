@@ -6,7 +6,7 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 19:37:16 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/06/23 18:41:10 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/06/24 21:46:48 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	*end_diner(void *philo)
 				sem_post(ph->data->finish);
 		}
 		sem_post(ph->eat);
+		usleep(50);
 	}
 	return (NULL);
 }
