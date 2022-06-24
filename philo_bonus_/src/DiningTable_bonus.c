@@ -6,7 +6,7 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 19:40:15 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/06/23 18:41:04 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/06/24 15:17:33 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ void	ft_actions(t_philo *ph)
 
 	pthread_create(&check, NULL, &end_diner, ph);
 	pthread_detach(check);
-	if (ph->nbr % 2 == 0)
-		ft_usleep(100, ft_get_time());
 	while (1)
 	{
 		take_forks(ph);

@@ -6,7 +6,7 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 19:37:16 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/06/24 14:51:57 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/06/24 15:02:05 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	end_diner(t_data *data)
 		if ((ft_get_time() - data->philo[i].last_eat) >= data->time_die)
 		{
 			data->finish = 1;
+			usleep(200);
 			ft_print_dead("died", i + 1, data);
 			break ;
 		}
