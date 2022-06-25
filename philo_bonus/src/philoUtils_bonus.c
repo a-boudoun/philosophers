@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/philosophers_bonus.h"
+#include "philosophers_bonus.h"
 
 void	ft_print(char *messege, int p, t_philo *ph)
 {

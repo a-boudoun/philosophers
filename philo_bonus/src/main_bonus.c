@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/philosophers_bonus.h"
+#include "philosophers_bonus.h"
 /*644
   6 > read/write permisson for the user
   4 > read only for the group and others

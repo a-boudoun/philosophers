@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/philosophers_bonus.h"
+#include "philosophers_bonus.h"
 
 void	*end_diner(void *philo)
 {

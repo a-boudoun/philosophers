@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_usleep_bonus.c                                  :+:      :+:    :+:   */
+/*   ft_print_error_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/12 21:21:44 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/06/22 23:16:14 by aboudoun         ###   ########.fr       */
+/*   Created: 2022/06/22 21:22:16 by aboudoun          #+#    #+#             */
+/*   Updated: 2022/06/22 23:16:11 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"../include/philosophers_bonus.h"
+#include "philosophers_bonus.h"
 
-void	ft_usleep(unsigned long time, unsigned long start)
+static int	ft_strlen(char *str)
 {
-	usleep(time * 1000 * 0.95);
-	while (ft_get_time() - start < time)
-		usleep(50);
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+void	print_err(char *message)
+{
+	write(2, message, ft_strlen(message));
+	exit(1);
 }

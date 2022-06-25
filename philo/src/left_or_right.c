@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"../include/philosophers.h"
+#include "philosophers.h"
 
 void	start_left(t_philo *ph)
 {
