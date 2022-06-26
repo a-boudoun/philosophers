@@ -17,6 +17,7 @@ BON_FILES = ./src/main_bonus.c \
 			./src/philo_bonus.c\
 			./src/ft_usleep_bonus.c\
 			./src/ft_print_error_bonus.c\
+			./src/check_args_bonus.c\
 
 OBJ_B = $(BON_FILES:%bonus.c=%bonus.o)
 

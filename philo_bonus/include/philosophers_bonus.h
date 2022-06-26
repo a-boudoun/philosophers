@@ -6,7 +6,7 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 19:44:51 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/06/23 03:01:20 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/06/26 21:34:52 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,10 @@ void		ft_actions(t_philo *ph);
 void		ft_print_dead(char *messege, int p, t_philo *ph);
 void		ft_usleep(unsigned long time, unsigned long start);
 void		print_err(char *message);
+
+/**check args functions**/
+void		is_not_int(char **av);
+void		check_args2(char **av, int i, int j);
+void		check_args3(char i);
 
 #endif

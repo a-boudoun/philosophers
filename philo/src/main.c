@@ -6,7 +6,7 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 19:42:39 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/06/23 15:32:53 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/06/26 21:05:41 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int	check_args(int ac, char **av)
 	int	i;
 	int	j;
 
+	i = 0;
+	j = 0;
 	if (ac != 6 && ac != 5)
 	{
 		printf("%splease enter: ./philo [number_of_philosophers] ", WHT);
@@ -48,18 +50,12 @@ int	check_args(int ac, char **av)
 		printf("%s <time must be in milliseconds>\n", RED);
 		return (1);
 	}
-	i = 0;
-	while (av[++i])
+	if (check_args2(av, i, j))
+		return (1);
+	if (is_not_int(av))
 	{
-		j = -1;
-		while (av[i][++j])
-		{
-			if (!(av[i][j] >= '0' && av[i][j] <= '9'))
-			{
-				print_err("error\nall arguments must be positive numbers\n");
-				return (1);
-			}
-		}
+		print_err("error\n");
+		return (1);
 	}
 	return (0);
 }

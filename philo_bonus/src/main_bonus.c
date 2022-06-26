@@ -6,7 +6,7 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 19:42:39 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/06/26 19:16:13 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/06/26 21:31:21 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,9 @@ void	check_args(int ac, char **av)
 		exit(1);
 	}
 	i = 0;
-	while (av[++i])
-	{
-		j = -1;
-		while (av[i][++j])
-		{
-			if (!(av[i][j] >= '0' && av[i][j] <= '9'))
-				print_err("all arguments must be positive numbers\n");
-		}
-	}
+	j = 0;
+	check_args2(av, i, j);
+	is_not_int(av);
 }
 
 void	semaphore_unlink(void)

@@ -6,7 +6,7 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:41:18 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/06/26 19:05:55 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/06/26 20:55:46 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ long long	ft_get_time(void)
 
 int	ft_atoi(char *str)
 {
-	int	i;
-	int	s;
-	int	n;
+	int		i;
+	int		s;
+	long	n;
 
 	s = 1;
 	i = 0;
@@ -77,6 +77,8 @@ int	ft_atoi(char *str)
 	while ((str[i] >= '0' && str[i] <= '9') && str[i])
 	{
 		n = n * 10 + ((int)str[i] - '0');
+		if (n * s > 2147483647 || n * s < -2147483648)
+			return (0);
 		i++;
 	}
 	return (n * s);

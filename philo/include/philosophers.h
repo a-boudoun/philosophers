@@ -6,7 +6,7 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 19:44:51 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/06/23 19:37:55 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/06/26 20:59:05 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,10 @@ void		take_right_fork(t_philo *ph);
 void		take_left_fork(t_philo *ph);
 void		ft_sleep(t_philo *ph);
 void		eat(t_philo *ph);
+
+/**check args functions**/
+int			is_not_int(char **av);
+int			check_args2(char **av, int i, int j);
+int			check_args3(char i);
 
 #endif

@@ -18,6 +18,7 @@ MAND_FILES = ./src/main.c \
 			./src/ft_usleep.c\
 			./src/ft_print_error.c\
 			./src/left_or_right.c\
+			./src/check_args.c\
 
 OBJ = $(MAND_FILES:%.c=%.o)
 
