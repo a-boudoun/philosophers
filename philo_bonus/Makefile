@@ -8,7 +8,7 @@ HEADER_B = ./include/philosophers_bonus.h
 
 INCLUDE_B = ./include
 
-CC = gcc
+CC = CC
 FLAGS = -Wall -Wextra -Werror
 			
 BON_FILES = ./src/main_bonus.c \

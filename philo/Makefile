@@ -8,7 +8,7 @@ HEADER = ./include/philosophers.h
 
 INCLUDE = ./include
 
-CC = gcc
+CC = CC
 FLAGS = -Wall -Wextra -Werror
 
 MAND_FILES = ./src/main.c \
