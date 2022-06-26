@@ -6,7 +6,7 @@
 /*   By: aboudoun <aboudoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 20:57:12 by aboudoun          #+#    #+#             */
-/*   Updated: 2022/06/26 21:35:17 by aboudoun         ###   ########.fr       */
+/*   Updated: 2022/06/26 22:02:01 by aboudoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ void	is_not_int(char **av)
 	i = 1;
 	while (av[i])
 	{
-		if (!ft_atoi(av[i]))
+		if (!ft_atoi(av[i]) || ft_atoi(av[1]) > 200)
 			print_err("error\n");
 		i++;
 	}
 	i = 2;
-	while (av[i])
+	while (av[i] && i < 5)
 	{
 		if (ft_atoi(av[i]) < 60)
 			print_err("error\n");
